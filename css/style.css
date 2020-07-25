@@ -67,6 +67,17 @@ div.page-content {
 	width: 100%;
 }
 
+div.column {
+  float: left;
+  width: 50%;
+}
+
+div.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 a:link {
 	color: #0f0f0f;
 	text-decoration: underline;
