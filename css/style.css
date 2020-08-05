@@ -23,7 +23,7 @@ div.page-bg {
 }
 
 pre {
-	font-size: 12px;
+	font-size: 0.6vw;
 	padding: 0px;
 	margin: 0px;
 	display: inline-block;
@@ -40,7 +40,7 @@ body {
 header {
 	background-color: #454a52;
 	color: white;
-	height: 174px;
+	height: 16vh;
 	padding: 10px;
 	text-align: center;
 	z-index: 0;
@@ -111,8 +111,8 @@ p.pizza {
 	float: center;
 	text-align: center;
 	position: relative;
-	bottom: 46px;
-	left: 180px;
+	bottom: 22%;
+	left: 20%;
 	font-size: 10px;
 }
 
@@ -132,4 +132,22 @@ footer {
   background-color: #454a52;
   color: white;
   padding: 8px;
+}
+
+@media only screen and (max-width: 60em) {
+    header {
+		background-color: #454a52;
+		color: white;
+		height: 7vh;
+		padding: 10px;
+		text-align: center;
+		z-index: 0;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+}
+
 }
