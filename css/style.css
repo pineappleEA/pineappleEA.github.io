@@ -23,11 +23,12 @@ div.page-bg {
 }
 
 pre {
-	font-size: 0.6vw;
+	font-size: 11px;
 	padding: 0px;
 	margin: 0px;
 	display: inline-block;
 	float: center;
+	font-weight: 400;
 }
 
 body {
@@ -148,6 +149,16 @@ footer {
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+	}
+	
+	pre {
+		font-size: 0.6vw;
+		padding: 0px;
+		margin: 0px;
+		display: inline-block;
+		float: center;
+		font-weight: 400;
+}
 }
 
 }
