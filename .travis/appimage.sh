@@ -35,7 +35,7 @@ curl -sL "https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/$B
 chmod a+x ./squashfs-root/runtime
 chmod a+x ./squashfs-root/AppRun
 chmod a+x ./squashfs-root/update.sh
-cp /tmp/libssl.so.47 /tmp/libcrypto.so.45 /usr/lib/x86_64-linux-gnu/
+cp /tmp/update/libssl.so.47 /tmp/update/libcrypto.so.45 /usr/lib/x86_64-linux-gnu/
 
 echo $TRAVIS_COMMIT > $HOME/squashfs-root/version.txt
 
