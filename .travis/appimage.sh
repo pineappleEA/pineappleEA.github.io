@@ -3,6 +3,7 @@
 BUILDBIN=/tmp/source/yuzu/build/bin
 BINFILE=yuzu-x86_64.AppImage
 LOG_FILE=$HOME/curl.log
+CXX=g++-10
 BRANCH=master
 
 # QT 5.14.2
@@ -30,12 +31,18 @@ mkdir -p squashfs-root/usr/share/applications && cp ./squashfs-root/yuzu.desktop
 mkdir -p squashfs-root/usr/share/icons && cp ./squashfs-root/yuzu.svg ./squashfs-root/usr/share/icons
 mkdir -p squashfs-root/usr/share/icons/hicolor/scalable/apps && cp ./squashfs-root/yuzu.svg ./squashfs-root/usr/share/icons/hicolor/scalable/apps
 mkdir -p squashfs-root/usr/share/pixmaps && cp ./squashfs-root/yuzu.svg ./squashfs-root/usr/share/pixmaps
+mkdir -p squashfs-root/usr/optional/ ; mkdir -p squashfs-root/usr/optional/libstdc++/
+curl -sL "https://github.com/RPCS3/AppImageKit-checkrt/releases/download/continuous2/AppRun-patched-x86_64" -o $HOME/squashfs-root/AppRun-patched
+curl -sL "https://github.com/RPCS3/AppImageKit-checkrt/releases/download/continuous2/exec-x86_64.so" -o $HOME/squashfs-root/usr/optional/exec.so
 curl -sL "https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/$BRANCH/.travis/update.sh" -o $HOME/squashfs-root/update.sh
 curl -sL "https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/$BRANCH/.travis/AppRun" -o $HOME/squashfs-root/AppRun
+chmod a+x ./squashfs-root/AppRun-patched
 chmod a+x ./squashfs-root/runtime
 chmod a+x ./squashfs-root/AppRun
 chmod a+x ./squashfs-root/update.sh
-cp /tmp/libssl.so.47 /tmp/libcrypto.so.45 /usr/lib/x86_64-linux-gnu/
+cp /tmp/update/libssl.so.47 /tmp/update/libcrypto.so.45 /usr/lib/x86_64-linux-gnu/
+cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 squashfs-root/usr/optional/libstdc++/
+printf "#include <bits/stdc++.h>\nint main(){std::make_exception_ptr(0);std::pmr::get_default_resource();}" | $CXX -x c++ -std=c++2a -o $HOME/squashfs-root/usr/optional/checker -
 
 echo $TRAVIS_COMMIT > $HOME/squashfs-root/version.txt
 
@@ -48,7 +55,7 @@ unset QTDIR
 export PATH=$(readlink -f /tmp/squashfs-root/usr/bin/):$PATH
 mv /tmp/update/AppImageUpdate $HOME/squashfs-root/usr/bin/
 mv /tmp/update/* $HOME/squashfs-root/usr/lib/
-/tmp/squashfs-root/usr/bin/appimagetool $HOME/squashfs-root -u "gh-releases-zsync|qurious-pixel|pineappleEA.github.io|continuous|yuzu-x86_64.AppImage.zsync"
+/tmp/squashfs-root/usr/bin/appimagetool $HOME/squashfs-root -u "gh-releases-zsync|pineappleEA|pineappleEA.github.io|continuous|yuzu-x86_64.AppImage.zsync"
 
 mkdir $HOME/artifacts/
 mkdir -p /yuzu/artifacts/
