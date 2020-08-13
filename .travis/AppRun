@@ -6,7 +6,7 @@ GITVER=`wget -qO- https://www.github.com/pineappleEA/pineappleEA.github.io/relea
 APPVER=`cat $APPDIR/version.txt`
 
 if [ "$GITVER" = "$APPVER" ]; then
-	$APPDIR/usr/bin/yuzu
+	$APPDIR/AppRun-patched
 else
 	$APPDIR/update.sh
 fi
