@@ -31,8 +31,8 @@ patch -p1 < inject-git-info.patch
 patch -p1 < mime-type.patch
 mkdir -p build && cd build
 
-curl -sL "https://raw.githubusercontent.com/yuzu-emu/yuzu/master/src/web_service/web_backend.cpp" -o /tmp/source/yuzu/src/web_service/web_backend.cpp
-curl -sL "https://raw.githubusercontent.com/yuzu-emu/yuzu/master/src/input_common/sdl/sdl_impl.cpp" -o /tmp/source/yuzu/src/input_common/sdl/sdl_impl.cpp
+#curl -sL "https://raw.githubusercontent.com/yuzu-emu/yuzu/master/src/web_service/web_backend.cpp" -o /tmp/source/yuzu/src/web_service/web_backend.cpp
+#curl -sL "https://raw.githubusercontent.com/yuzu-emu/yuzu/master/src/input_common/sdl/sdl_impl.cpp" -o /tmp/source/yuzu/src/input_common/sdl/sdl_impl.cpp
 
 cmake .. -G Ninja -DYUZU_USE_BUNDLED_UNICORN=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr/lib/ccache/gcc -DCMAKE_CXX_COMPILER=/usr/lib/ccache/g++ -DTITLE_BAR_FORMAT_IDLE="$title" -DTITLE_BAR_FORMAT_RUNNING="$title | {3}" -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON -DGIT_BRANCH="HEAD" -DGIT_DESC="$msvc" -DUSE_DISCORD_PRESENCE=ON
 
