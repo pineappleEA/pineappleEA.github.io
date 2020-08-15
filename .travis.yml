@@ -12,8 +12,7 @@ matrix:
        submodules: false
       before_install:
        - sudo apt-get update
-       - sudo apt-get -y install libsdl2-dev
-       - sudo apt-cache policy libsdl2-dev
+       - sudo apt-get -y install libsdl2-dev libsdl2-2.0-0
       addons:
         apt:
           packages:
