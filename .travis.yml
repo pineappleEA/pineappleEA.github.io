@@ -13,6 +13,7 @@ matrix:
       before_install:
        - sudo apt-get update
        - sudo apt-get -y install libsdl2-dev
+       - sudo apt-cache policy libsdl2-dev
       addons:
         apt:
           packages:
