@@ -11,7 +11,7 @@ export QTDIR=$QT_BASE_DIR
 export PATH=$QT_BASE_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$QT_BASE_DIR/lib/x86_64-linux-gnu:$QT_BASE_DIR/lib:$LD_LIBRARY_PATH
 export PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-sudo apt-get -y install libsdl2-dev libsdl2-2.0-0 libhidapi-dev
+#sudo apt-get -y install libsdl2-dev libsdl2-2.0-0 libhidapi-dev
 ln -s /home/yuzu/.conan /root
 mkdir -p /tmp/source/
 cd /tmp/source
