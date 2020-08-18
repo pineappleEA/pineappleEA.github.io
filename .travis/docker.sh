@@ -4,14 +4,14 @@ BRANCH=master
 
 curl -s https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/master/index.html > sourcefile.txt
 latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | cut -d '=' -f 2 | cut -d '>' -f 1 | head -n 1)
-title=$(echo $latest | cut -d '/' -f 5 | head -n 1 | cut -d '_' -f 1)
+title="Yuzu $(echo $latest | cut -d '-' -f 2 | cut -d '_' -f 1)"
 
 QT_BASE_DIR=/opt/qt514
 export QTDIR=$QT_BASE_DIR
 export PATH=$QT_BASE_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$QT_BASE_DIR/lib/x86_64-linux-gnu:$QT_BASE_DIR/lib:$LD_LIBRARY_PATH
 export PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-#sudo apt-get -y install libsdl2-dev libsdl2-2.0-0 libhidapi-dev
+
 ln -s /home/yuzu/.conan /root
 mkdir -p /tmp/source/
 cd /tmp/source
@@ -22,7 +22,7 @@ msvc=$(grep yuzu-windows-msvc-source | cut -d '-' -f 5 | cut -d '.' -f 1 )
 tar -xf yuzu-windows-msvc-source-* --directory /tmp/source
 cd /tmp/source
 mv yuzu-windows-msvc-source-* yuzu/
-#rm -r /tmp/source/yuzu-windows-msvc-early-access/
+
 cd /tmp/source/yuzu/
 
 find -path ./dist -prune -o -type f -exec sed -i 's/\r$//' {} ';'
