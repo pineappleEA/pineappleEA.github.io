@@ -12,8 +12,8 @@ matrix:
        clone: true
        submodules: false
       before_install:
-       - sudo apt-get update
-       - sudo apt-get -y install libsdl2-dev libsdl2-2.0-0 libhidapi-dev
+       #- sudo apt-get update
+       #- sudo apt-get -y install libsdl2-dev libsdl2-2.0-0 libhidapi-dev
       addons:
         apt:
           packages:
