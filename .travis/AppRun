@@ -5,7 +5,9 @@ mkdir -p $HOME/.local/share/icons/hicolor/scalable/apps && cp $APPDIR/yuzu.svg $
 GITVER=`wget -qO- https://www.github.com/pineappleEA/pineappleEA.github.io/releases/tag/continuous | grep pineappleEA/pineappleEA.github.io/commit/ | cut -d '"' -f 2 | cut -d '/' -f 5 | awk '!x[$0]++'` 
 APPVER=`cat $APPDIR/version.txt`
 
-if [ "$GITVER" = "$APPVER" ]; then
+if [[ -z "$GITVER" ]]; then
+	$APPDIR/usr/bin/yuzu
+elif [ "$GITVER" = "$APPVER" ]; then
 	$APPDIR/usr/bin/yuzu
 else
 	$APPDIR/update.sh
