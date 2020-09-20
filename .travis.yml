@@ -22,9 +22,12 @@ matrix:
       after_success:
       - ls -al artifacts/
       - cd artifacts/
+      - version=$(cat /yuzu/title | cut -d " " -f 2) 
+      - cp yuzu-x86_64.AppImage Yuzu-EA-$version.AppImage
       - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
       - chmod a+x upload.sh
       - bash upload.sh yuzu* 
+      - UPLOADTOOL_SUFFIX="EA $version" bash upload.sh Yuzu-EA*
       branches:
   except:
     - /^(?i:continuous.*)$/
