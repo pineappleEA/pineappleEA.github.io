@@ -4,7 +4,8 @@ BRANCH=master
 
 curl -s https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/master/index.html > sourcefile.txt
 latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | cut -d '=' -f 2 | cut -d '>' -f 1 | head -n 1)
-title=$(echo $latest | cut -d '/' -f 5 | head -n 1 | cut -d '_' -f 1)
+title="Yuzu $(echo $latest | cut -d '-' -f 2 | cut -d '_' -f 1)"
+echo $title > /yuzu/title
 
 QT_BASE_DIR=/opt/qt514
 export QTDIR=$QT_BASE_DIR
