@@ -42,4 +42,6 @@ ninja -j $(nproc)
 cd /tmp
 curl -sLO "https://raw.githubusercontent.com/$TRAVIS_REPO/$BRANCH/.travis/appimage.sh"
 chmod a+x appimage.sh
+echo "echo $pwd"
+ls -al .
 ./appimage.sh
