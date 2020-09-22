@@ -40,6 +40,6 @@ ninja -j $(nproc)
 #cat yuzu/build/CMakeFiles/CMakeError.log | curl -F 'f:1=<-' ix.io
 
 cd /tmp
-curl -sLO "https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/$BRANCH/.travis/appimage.sh"
+curl -sLO "https://raw.githubusercontent.com/$TRAVIS_REPO/$BRANCH/.travis/appimage.sh"
 chmod a+x appimage.sh
 ./appimage.sh
