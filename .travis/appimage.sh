@@ -3,7 +3,7 @@
 BUILDBIN=/tmp/source/yuzu/build/bin
 BINFILE=yuzu-x86_64.AppImage
 LOG_FILE=$HOME/curl.log
-BRANCH=master
+BRANCH=$TRAVIS_BRANCH
 
 # QT 5.14.2
 # source /opt/qt514/bin/qt514-env.sh
@@ -53,9 +53,11 @@ mv /tmp/update/* $HOME/squashfs-root/usr/lib/
 mkdir $HOME/artifacts/
 mkdir -p /yuzu/artifacts/
 mv yuzu-x86_64.AppImage* $HOME/artifacts
+version=$(echo $title | cut -d " " -f 2) 
+cp /yuzu/artifacts/yuzu-x86_64.AppImage /yuzu/artifacts/Yuzu-EA-$version.AppImage
 cp -R $HOME/artifacts/ /yuzu/
 cp "$BUILDBIN"/yuzu /yuzu/artifacts
 chmod -R 777 /yuzu/artifacts
 cd /yuzu/artifacts
 ls -al /yuzu/artifacts/
-curl --upload-file yuzu-x86_64.AppImage https://transfersh.com/yuzu-x86_64.AppImage
+#curl --upload-file yuzu-x86_64.AppImage https://transfersh.com/yuzu-x86_64.AppImage
