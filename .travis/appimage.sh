@@ -54,8 +54,8 @@ mkdir $HOME/artifacts/
 mkdir -p /yuzu/artifacts/
 mv yuzu-x86_64.AppImage* $HOME/artifacts
 version=$(echo $title | cut -d " " -f 2) 
-cp /yuzu/artifacts/yuzu-x86_64.AppImage /yuzu/artifacts/Yuzu-EA-$version.AppImage
 cp -R $HOME/artifacts/ /yuzu/
+cp /yuzu/artifacts/yuzu-x86_64.AppImage /yuzu/artifacts/Yuzu-EA-$version.AppImage
 cp "$BUILDBIN"/yuzu /yuzu/artifacts
 chmod -R 777 /yuzu/artifacts
 cd /yuzu/artifacts
