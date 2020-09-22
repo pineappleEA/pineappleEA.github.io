@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-BRANCH=master
+BRANCH=$TRAVIS_BRANCH
 
 curl -s https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/master/index.html > sourcefile.txt
 latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | cut -d '=' -f 2 | cut -d '>' -f 1 | head -n 1)
