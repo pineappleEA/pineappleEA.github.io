@@ -2,7 +2,7 @@
 
 BRANCH=$TRAVIS_BRANCH
 
-curl -s https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/master/index.html > sourcefile.txt
+curl -s https://github.com/pineappleEA/pineappleEA.github.io/blob/master/index.html > sourcefile.txt
 latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | cut -d '=' -f 2 | cut -d '>' -f 1 | head -n 1)
 export title="Yuzu $(echo $latest | cut -d '-' -f 2 | cut -d '_' -f 1)"
 
