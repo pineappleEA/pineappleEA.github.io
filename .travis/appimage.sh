@@ -51,13 +51,14 @@ mv /tmp/update/* $HOME/squashfs-root/usr/lib/
 /tmp/squashfs-root/usr/bin/appimagetool $HOME/squashfs-root -u "gh-releases-zsync|pineappleEA|pineappleEA.github.io|continuous|yuzu-x86_64.AppImage.zsync"
 
 mkdir $HOME/artifacts/
-mkdir -p /yuzu/artifacts/
-mv yuzu-x86_64.AppImage* $HOME/artifacts
+mkdir -p /yuzu/artifacts/version
+mv yuzu-x86_64.AppImage* /yuzu/artifacts
 version=$(echo $title | cut -d " " -f 2) 
+cp /yuzu/artifacts/yuzu-x86_64.AppImage /yuzu/artifacts/version/Yuzu-EA-$version.AppImage
 cp -R $HOME/artifacts/ /yuzu/
-cp /yuzu/artifacts/yuzu-x86_64.AppImage /yuzu/artifacts/Yuzu-EA-$version.AppImage
 cp "$BUILDBIN"/yuzu /yuzu/artifacts
 chmod -R 777 /yuzu/artifacts
 cd /yuzu/artifacts
 ls -al /yuzu/artifacts/
+ls -al /yuzu/artifacts/version
 #curl --upload-file yuzu-x86_64.AppImage https://transfersh.com/yuzu-x86_64.AppImage
