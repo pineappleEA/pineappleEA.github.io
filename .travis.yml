@@ -1,19 +1,15 @@
 language: cpp
-dist: focal
 cache: ccache
 matrix:
   include:
     - os: linux
       env: NAME="linux appimage"
       sudo: required
-      dist: focal
+      dist: trusty
       services: docker
       git:
        clone: true
        submodules: false
-      before_install:
-       #- sudo apt-get update
-       #- sudo apt-get -y install libsdl2-dev libsdl2-2.0-0 libhidapi-dev
       addons:
         apt:
           packages:
@@ -22,18 +18,21 @@ matrix:
        - docker pull quriouspixel/yuzu:latest
       script: 
        - mkdir -p "$HOME/.ccache"
-       - docker run -u root -e ENABLE_COMPATIBILITY_REPORTING --env-file .travis/travis-ci.env -v $(pwd):/yuzu -v "$HOME/.ccache":/root/.ccache --name yuzu_appimage quriouspixel/yuzu:latest /bin/bash /yuzu/.travis/docker.sh
+       - travis_retry docker run -u root -e ENABLE_COMPATIBILITY_REPORTING --env-file .travis/travis-ci.env -v $(pwd):/yuzu -v "$HOME/.ccache":/root/.ccache --name yuzu_appimage quriouspixel/yuzu:latest /bin/bash /yuzu/.travis/docker.sh
       after_success:
       - ls -al artifacts/
-      - cd artifacts/
-      - version=$(ls . |grep Yuzu-EA | cut -d "-" -f 3 | cut -d "." -f 1) 
-      - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-      - chmod a+x upload.sh
-      - bash upload.sh yuzu* 
-      - UPLOADTOOL_SUFFIX="EA-$version" bash upload.sh Yuzu-EA*
+      - wget -c https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz
+      - tar xfv ghr_v0.13.0_linux_amd64.tar.gz      
+      - version=$(ls artifacts/version |grep Yuzu-EA | cut -d "-" -f 3 | cut -d "." -f 1) 
+      - ghr_v0.13.0_linux_amd64/ghr -recreate -n 'Continous build' -b "Travis CI build log ${TRAVIS_BUILD_WEB_URL}" continuous artifacts/
+      - ghr_v0.13.0_linux_amd64/ghr -recreate -n "Continuous build (EA-$version)" -b "Travis CI build log ${TRAVIS_BUILD_WEB_URL}" EA-$version artifacts/version/
       branches:
-  except:
-    - /^(?i:continuous.*)$/
+        only:
+        - $TRAVIS_BRANCH
+        except:
+          tags:
+          - /^(?i:continuous.*)$/
+          - /^(?i:EA)-.*$/
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
@@ -42,4 +41,4 @@ deploy:
   file: "artifacts/*"
   skip_cleanup: true
   on:
-    tags: true
+    tags: false

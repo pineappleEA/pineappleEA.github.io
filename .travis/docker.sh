@@ -15,7 +15,7 @@ export PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
 ln -s /home/yuzu/.conan /root
 mkdir -p /tmp/source/
 cd /tmp/source
-curl -sLO $(curl $latest | grep -o 'https://cdn-.*.7z' | head -n 1)
+aria2c $(curl $latest | grep -o 'https://cdn-.*.7z' | head -n 1)
 7z x Yuzu* yuzu-windows-msvc-early-access/yuzu-windows-msvc-source-*
 cd yuzu-windows-msvc-early-access
 msvc=$(grep yuzu-windows-msvc-source | cut -d '-' -f 5 | cut -d '.' -f 1 )
