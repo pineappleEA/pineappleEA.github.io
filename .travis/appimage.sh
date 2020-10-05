@@ -57,6 +57,7 @@ version=$(echo $title | cut -d " " -f 2)
 cp /yuzu/artifacts/yuzu-x86_64.AppImage /yuzu/artifacts/version/Yuzu-EA-$version.AppImage
 cp -R $HOME/artifacts/ /yuzu/
 cp "$BUILDBIN"/yuzu /yuzu/artifacts
+cp "$BUILDBIN"/yuzu /yuzu/artifacts/version
 chmod -R 777 /yuzu/artifacts
 cd /yuzu/artifacts
 ls -al /yuzu/artifacts/
