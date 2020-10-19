@@ -6,9 +6,10 @@ curl -s https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/mast
 #GDrive
 #latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | head -n 1)
 #id=$(echo $latest | cut -d '!' -f 2 | cut -d '-' -f 3)
+#export title=$(echo $latest | cut -d '>' -f 2 | cut -d '<' -f 1 |grep -Eo '[0-9]{1,4}')
 #AnonF
 latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | cut -d '=' -f 2 | cut -d '>' -f 1 | head -n 1)
-export title=$(echo $latest | cut -d '>' -f 2 | cut -d '<' -f 1 |grep -Eo '[0-9]{1,4}')
+export title="$(echo $latest | cut -d '-' -f 2 | cut -d '_' -f 1)"
 
 QT_BASE_DIR=/opt/qt514
 export QTDIR=$QT_BASE_DIR
