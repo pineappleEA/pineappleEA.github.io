@@ -16,10 +16,10 @@ export PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
 ln -s /home/yuzu/.conan /root
 mkdir -p /tmp/source/
 cd /tmp/source
-#aria2c $(curl $latest | grep -o 'https://cdn-.*.7z' | head -n 1)
-filename="YuzuEA-$title.7z"
-curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${id}" > /dev/null
-curl -Lb ./cookie -C - "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${id}" -o ${filename}
+aria2c $(curl $latest | grep -o 'https://cdn-.*.7z' | head -n 1)
+#filename="YuzuEA-$title.7z"
+#curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${id}" > /dev/null
+#curl -Lb ./cookie -C - "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${id}" -o ${filename}
 7z x Yuzu* yuzu-windows-msvc-early-access/yuzu-windows-msvc-source-*
 cd yuzu-windows-msvc-early-access
 msvc=$(grep yuzu-windows-msvc-source | cut -d '-' -f 5 | cut -d '.' -f 1 )
