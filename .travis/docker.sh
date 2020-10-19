@@ -3,8 +3,11 @@
 BRANCH=$TRAVIS_BRANCH
 
 curl -s https://raw.githubusercontent.com/pineappleEA/pineappleEA.github.io/master/index.html > sourcefile.txt
-latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | head -n 1)
-id=$(echo $latest | cut -d '!' -f 2 | cut -d '-' -f 3)
+#GDrive
+#latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | head -n 1)
+#id=$(echo $latest | cut -d '!' -f 2 | cut -d '-' -f 3)
+#AnonF
+latest=$(cat sourcefile.txt | grep https://anonfiles.com/ | cut -d '=' -f 2 | cut -d '>' -f 1 | head -n 1)
 export title=$(echo $latest | cut -d '>' -f 2 | cut -d '<' -f 1 |grep -Eo '[0-9]{1,4}')
 
 QT_BASE_DIR=/opt/qt514
@@ -16,7 +19,9 @@ export PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
 ln -s /home/yuzu/.conan /root
 mkdir -p /tmp/source/
 cd /tmp/source
+#AnonF
 aria2c $(curl $latest | grep -o 'https://cdn-.*.7z' | head -n 1)
+#GDrive
 #filename="YuzuEA-$title.7z"
 #curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${id}" > /dev/null
 #curl -Lb ./cookie -C - "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${id}" -o ${filename}
