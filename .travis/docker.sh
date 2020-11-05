@@ -36,8 +36,9 @@ mv yuzu-windows-msvc-source-* yuzu/
 cd /tmp/source/yuzu/
 
 find -path ./dist -prune -o -type f -exec sed -i 's/\r$//' {} ';'
-wget https://raw.githubusercontent.com/PineappleEA/Pineapple-Linux/master/inject-git-info.patch
+wget -q https://raw.githubusercontent.com/PineappleEA/Pineapple-Linux/master/{inject-git-info,warning-to-warning}.patch
 patch -p1 < inject-git-info.patch
+patch -p1 < warning-to-warning.patch
 mkdir -p build && cd build
 
 #curl -sL "https://raw.githubusercontent.com/yuzu-emu/yuzu/master/src/web_service/web_backend.cpp" -o /tmp/source/yuzu/src/web_service/web_backend.cpp
