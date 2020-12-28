@@ -1,0 +1,39 @@
+name: Pineapple-AppImage
+
+on: push
+
+jobs:
+  pineapple-appimage:
+    name: pineapple bundled as appimage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          path: $HOME/.ccache
+          key: build-ccache
+          restore-keys: |
+            build-ccache
+      - name: install Pineapple
+        run: |
+              mkdir -p "$HOME/.ccache"
+              docker pull quriouspixel/yuzu:latest
+              docker run -u root -e ENABLE_COMPATIBILITY_REPORTING --env-file .travis/travis-ci.env -v $(pwd):/yuzu -v "$HOME/.ccache":/root/.ccache quriouspixel/yuzu:latest /bin/bash /yuzu/.travis/docker.sh
+      - name: Run Pineapple-AppImage
+        run:  echo "Success!"
+      - name: Upload Dolphin
+        run: |
+            ls -al artifacts/
+            wget -c https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz
+            tar xfv ghr_v0.13.0_linux_amd64.tar.gz      
+            version=$(ls artifacts/version |grep Yuzu-EA | cut -d "-" -f 3 | cut -d "." -f 1) 
+            ghr_v0.13.0_linux_amd64/ghr -recreate -n 'Continous build' -b "GitHub https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" continuous artifacts/
+            ghr_v0.13.0_linux_amd64/ghr -recreate -n "Continuous build (EA-$version)" -b "GitHub https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" EA-$version artifacts/version/
+    
+        env:
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
