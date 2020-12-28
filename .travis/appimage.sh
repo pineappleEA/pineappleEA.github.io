@@ -3,7 +3,7 @@
 BUILDBIN=/tmp/source/yuzu/build/bin
 BINFILE=yuzu-x86_64.AppImage
 LOG_FILE=$HOME/curl.log
-BRANCH=$TRAVIS_BRANCH
+BRANCH=`echo ${GITHUB_REF##*/}`
 
 # QT 5.14.2
 # source /opt/qt514/bin/qt514-env.sh
@@ -15,7 +15,7 @@ export PKG_CONFIG_PATH=$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
 
 cd /tmp
 	curl -sLO "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-	curl -sLO "https://github.com/$TRAVIS_REPO_SLUG/raw/$BRANCH/.travis/update.tar.gz"
+	curl -sLO "https://github.com/$GITHUB_REPOSITORY/raw/$BRANCH/.travis/update.tar.gz"
 	tar -xzf update.tar.gz
 	chmod a+x linuxdeployqt*.AppImage
 ./linuxdeployqt-continuous-x86_64.AppImage --appimage-extract
@@ -32,13 +32,13 @@ mkdir -p squashfs-root/usr/share/icons/hicolor/scalable/apps && cp ./squashfs-ro
 mkdir -p squashfs-root/usr/share/pixmaps && cp ./squashfs-root/yuzu.svg ./squashfs-root/usr/share/pixmaps
 #mkdir -p squashfs-root/usr/share/src
 #cp /tmp/source/yuzu-windows-msvc-early-access/yuzu-windows-msvc-source-*.tar.xz ./squashfs-root/usr/share/src
-curl -sL "https://raw.githubusercontent.com/$TRAVIS_REPO_SLUG/$BRANCH/.travis/update.sh" -o $HOME/squashfs-root/update.sh
+curl -sL "https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$BRANCH/.travis/update.sh" -o $HOME/squashfs-root/update.sh
 chmod a+x ./squashfs-root/runtime
 chmod a+x ./squashfs-root/update.sh
 
 #cp /tmp/libssl.so.47 /tmp/libcrypto.so.45 /usr/lib/x86_64-linux-gnu/
 
-echo $TRAVIS_COMMIT > $HOME/squashfs-root/version.txt
+echo $GITHUB_SHA > $HOME/squashfs-root/version.txt
 
 unset QT_PLUGIN_PATH
 unset LD_LIBRARY_PATH
@@ -58,7 +58,7 @@ mv ./yuzu-x86_64.AppImage /yuzu/artifacts/version/Yuzu-EA-$version.AppImage
 
 # Continuous AppImage
 rm $HOME/squashfs-root/AppRun
-curl -sL "https://raw.githubusercontent.com/$TRAVIS_REPO_SLUG/$BRANCH/.travis/AppRun" -o $HOME/squashfs-root/AppRun
+curl -sL "https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$BRANCH/.travis/AppRun" -o $HOME/squashfs-root/AppRun
 chmod a+x ./squashfs-root/AppRun
 mv /tmp/update/AppImageUpdate $HOME/squashfs-root/usr/bin/
 mv /tmp/update/* $HOME/squashfs-root/usr/lib/
