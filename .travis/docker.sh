@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-BRANCH=$TRAVIS_BRANCH
+BRANCH=`echo ${GITHUB_REF##*/}`
 
 QT_BASE_DIR=/opt/qt514
 export QTDIR=$QT_BASE_DIR
@@ -51,6 +51,6 @@ ninja -j $(nproc)
 #cat yuzu/build/CMakeFiles/CMakeError.log | curl -F 'f:1=<-' ix.io
 
 cd /tmp
-curl -sLO "https://raw.githubusercontent.com/$TRAVIS_REPO_SLUG/$BRANCH/.travis/appimage.sh"
+curl -sLO "https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$BRANCH/.travis/appimage.sh"
 chmod a+x appimage.sh
 ./appimage.sh
