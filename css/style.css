@@ -42,7 +42,7 @@ header {
 	background-color: #454a52;
 	color: white;
 	height: 16vh;
-	padding: 10px;
+	padding: 1vh;
 	text-align: center;
 	z-index: 0;
 	-webkit-touch-callout: none;
@@ -77,6 +77,14 @@ div.row:after {
   content: "";
   display: table;
   clear: both;
+}
+
+div.scrollbox {
+	border: none;
+	padding: 0px;
+	height: 52vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 a:link {
