@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 }
 
 div.page-bg {
@@ -23,11 +24,8 @@ div.page-bg {
 }
 
 pre {
-	font-size: 1.1vh;
-	padding: 0px;
-	margin: 0px;
+	font-size: 1vh;
 	display: inline-block;
-	float: center;
 	font-weight: 400;
 }
 
@@ -42,7 +40,7 @@ header {
 	background-color: #454a52;
 	color: white;
 	height: 16vh;
-	padding: 1vh;
+	padding-top:1vh;
 	text-align: center;
 	z-index: 0;
 	-webkit-touch-callout: none;
@@ -81,7 +79,6 @@ div.row:after {
 
 div.scrollbox {
 	border: none;
-	padding: 0px;
 	height: 46vh;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -120,8 +117,8 @@ p.pizza {
 	float: center;
 	text-align: center;
 	position: relative;
-	bottom: 20%;
-	left: 20%;
+	bottom: 17%;
+	left: 15%;
 	font-size: 1vh;
 }
 
@@ -143,11 +140,12 @@ footer {
   padding: 8px;
 }
 
+
 @media only screen and (max-width: 60em) {
     header {
 		background-color: #454a52;
 		color: white;
-		height: 7vh;
+		height: 12vh;
 		padding: 10px;
 		text-align: center;
 		z-index: 0;
@@ -156,17 +154,46 @@ footer {
 		-khtml-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
-		user-select: none;
 	}
-	
+
+	div.column {
+		float: left;
+		width: 100%;
+	  }
+
 	pre {
 		font-size: 0.6vw;
-		padding: 0px;
-		margin: 0px;
-		display: inline-block;
-		float: center;
+		padding-bottom:0px;
+		margin-bottom: auto;
 		font-weight: 400;
-}
+	}
+
+	div.centre-column {
+		width: 60%;
+	}
 }
 
+@media only screen and (max-width: 56em) {
+	header {
+		height:11vh;
+	}
 }
+
+@media only screen and (max-width: 45em) {
+	header {
+		height:10vh;
+	}
+}
+
+@media only screen and (max-width: 44.5em) {
+	header {
+		height:9vh;
+	}
+}
+
+@media only screen and (max-width: 32em) {
+	header {
+		height:8vh;
+	}
+}
+
