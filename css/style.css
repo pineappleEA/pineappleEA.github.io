@@ -78,7 +78,7 @@ div.row:after {
 
 div.scrollbox {
 	border: none;
-	height: 43vh;
+	height: 47vh;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
