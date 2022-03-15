@@ -18,6 +18,10 @@ div.page-bg {
 }
 
 pre {
+	text-shadow: 	-1px -1px 0 #000000,
+					1px -1px 0 #000000,
+					-1px 1px 0 #000000,
+					1px 1px 0 #000000;
 	font-size: 1vh;
 	display: inline-block;
 	font-weight: 400;
@@ -109,6 +113,10 @@ p {
 }
 
 p.pizza {
+	text-shadow: 	-1px -1px 0 #000000,
+					1px -1px 0 #000000,
+					-1px 1px 0 #000000,
+					1px 1px 0 #000000;
 	float: center;
 	text-align: center;
 	position: relative;
