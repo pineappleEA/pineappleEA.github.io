@@ -31,7 +31,8 @@ body {
 }
 
 header {
-	background-color: #454a52;
+	/*background-color: #454a52;*/
+	background: linear-gradient(to bottom, #0057b7 0%, 	#0057b7 50%, 	#ffd700 50%, 	#ffd700 100%);
 	color: white;
 	height: 16vh;
 	padding-top:1vh;
