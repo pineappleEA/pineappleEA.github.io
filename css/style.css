@@ -4,6 +4,12 @@
 	padding: 0;
 }
 
+/*mozilla padding removal*/
+*::-moz-focus-inner,p::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+
 div.page-bg {
 	background-attachment: fixed;
 	background-image: url('../images/bg.png');
@@ -14,17 +20,22 @@ div.page-bg {
 	height: 100%;
 	top: 0;
 	left: 0;
-	z-index: -1;
+	opacity: 60%;
+	z-index: -999;
 }
 
 pre {
-	text-shadow: 	-1px -1px 0 #000000,
-					1px -1px 0 #000000,
-					-1px 1px 0 #000000,
-					1px 1px 0 #000000;
+	text-shadow: -1px -1px 0 #000000,
+		1px -1px 0 #000000,
+		-1px 1px 0 #000000,
+		1px 1px 0 #000000;
 	font-size: 1vh;
-	display: inline-block;
+	display: block;
 	font-weight: 400;
+	margin: 0!important;
+	padding: 0!important;
+	letter-spacing: 0px!important;
+	line-height: normal;
 }
 
 body {
@@ -35,45 +46,56 @@ body {
 }
 
 header {
+	border-radius: 10px 10px 0px 0px;
 	/*background-color: #454a52;*/
-	background: linear-gradient(to bottom, #0057b7 0%, 	#0057b7 50%, 	#ffd700 50%, 	#ffd700 100%);
+	background: linear-gradient(to bottom, #0057b7 0%, #0057b7 50%, #ffd700 50%, #ffd700 100%);
 	color: white;
 	height: 16vh;
-	padding-top:1vh;
+	padding-top: 1vh;
 	text-align: center;
 	z-index: 0;
 	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-div.centre-column{
+div.body-footer-column {
+	margin-top: 2% !important;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+div.centre-column {
 	height: 100%;
 	margin: 0 auto;
 	padding: 10px;
 	width: 50%;
 	z-index: 0;
+	background: rgba(73, 75, 94, 0.75);
+	border-radius: 10px;
+	margin-top: 1%;
+	box-shadow: 0px 1vh 2vh 1vh rgba(0, 0, 0, 0.5);
 }
 
 div.page-content {
-	background-color: #E1E1E1;
+	background: rgba(247, 247, 247, 0.5);
 	height: 100%;
 	padding: 10px;
 	width: 100%;
 }
 
 div.column {
-  float: left;
-  width: 50%;
+	float: left;
+	width: 50%;
 }
 
 div.row:after {
-  content: "";
-  display: table;
-  clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 div.scrollbox {
@@ -113,10 +135,10 @@ p {
 }
 
 p.pizza {
-	text-shadow: 	-1px -1px 0 #000000,
-					1px -1px 0 #000000,
-					-1px 1px 0 #000000,
-					1px 1px 0 #000000;
+	text-shadow: -1px -1px 0 #000000,
+		1px -1px 0 #000000,
+		-1px 1px 0 #000000,
+		1px 1px 0 #000000;
 	float: center;
 	text-align: center;
 	position: relative;
@@ -138,14 +160,13 @@ img {
 }
 
 footer {
-  background-color: #454a52;
-  color: white;
-  padding: 8px;
+	color: white;
+	padding: 8px;
 }
 
 
 @media only screen and (max-width: 60em) {
-    header {
+	header {
 		background-color: #454a52;
 		color: white;
 		height: 12vh;
@@ -162,41 +183,46 @@ footer {
 	div.column {
 		float: left;
 		width: 100%;
-	  }
+	}
 
 	pre {
 		font-size: 0.6vw;
-		padding-bottom:0px;
+		padding-bottom: 0px;
 		margin-bottom: auto;
 		font-weight: 400;
 	}
 
 	div.centre-column {
 		width: 60%;
+		margin-top: 0% !important;
+	}
+
+	div.shadow {
+		width: 62%;
+		left: 19%;
 	}
 }
 
 @media only screen and (max-width: 56em) {
 	header {
-		height:11vh;
+		height: 11vh;
 	}
 }
 
 @media only screen and (max-width: 45em) {
 	header {
-		height:10vh;
+		height: 10vh;
 	}
 }
 
 @media only screen and (max-width: 44.5em) {
 	header {
-		height:9vh;
+		height: 9vh;
 	}
 }
 
 @media only screen and (max-width: 32em) {
 	header {
-		height:8vh;
+		height: 8vh;
 	}
 }
-
